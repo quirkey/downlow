@@ -24,7 +24,7 @@ module Downlow
       @tmp_dir = Pathname.new(options[:tmp_dir] || 'tmp').expand_path
     end
     
-    def fetch  
+    def fetch
       raise "Should be overridden by subclass"
     end
     

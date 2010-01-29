@@ -8,7 +8,23 @@ class TestDownlowFetcher < Test::Unit::TestCase
     end
     
     context ".fetch" do
-        
+      setup do
+        @url = 'http://github.com/quirkey/sammy/'
+        @fetcher = Downlow::Fetcher.fetch(@url, {:tmp_dir => tmp_dir})
+      end
+      
+      should "fetch the files" do
+        @path = @fetcher.local_path
+        assert @path.is_a?(Pathname)
+        assert @path.file?
+        assert_match(/tmp/, @path)
+        assert_match(/quirkey/, @path.read)
+      end
+      
+      should "return the correct fetcher" do
+        assert @fetcher.is_a?(Downlow::Http)
+      end
+      
     end
     
     context ".fetcher_for" do
@@ -39,24 +55,59 @@ class TestDownlowFetcher < Test::Unit::TestCase
     context "fetch" do
       
       context "git" do
+        setup do
+          @fetcher = Downlow::Git.new('git://github.com/quirkey/sammy.git', :tmp_dir => tmp_dir)
+          @path = @fetcher.fetch
+        end
+        
         should 'clone a git repo to the temp dir' do
-          
+          assert @path.is_a?(Pathname)
+          assert @path.directory?
+          assert_match(/tmp/, @path)
+          assert (@path + 'lib/sammy.js').readable?
         end
         
         should "set the local path" do
-          
+          assert_equal @path, @fetcher.local_path
         end
         
       end
       
       context "http" do
+        setup do
+          @fetcher = Downlow::Http.new('http://github.com/quirkey/sammy', :tmp_dir => tmp_dir)
+          @path = @fetcher.fetch
+        end
+        
         should 'download the file to the temp dir' do
-          
+          assert @path.is_a?(Pathname)
+          assert @path.file?
+          assert_match(/tmp/, @path)
+          assert_match(/quirkey/, @path.read)
         end
         
         should "set the local path" do
-          
+          assert_equal @path, @fetcher.local_path
         end
+      end
+      
+      context "file" do
+        setup do
+          @fetcher = Downlow::File.new(File.join(File.dirname(__FILE__), '..', 'lib'), :tmp_dir => tmp_dir)
+          @path = @fetcher.fetch
+        end
+        
+        should "move directory into temp dir" do
+          assert @path.is_a?(Pathname)
+          assert @path.directory?
+          assert_match(/tmp/, @path)
+          assert (@path + 'downlow.rb').readable?
+        end
+        
+        should "set the local path" do
+          assert_equal @path, @fetcher.local_path
+        end
+        
       end
       
       context "ftp" do
