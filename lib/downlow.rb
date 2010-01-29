@@ -3,6 +3,15 @@ require 'downlow/ext/pathname'
 module Downlow
   VERSION = '0.1.0'
   
+  def self.get(url, options = {})
+    # fetch to a temp dir
+    fetch_options = options.dup
+    fetch_options.delete(:destination)
+    fetcher       = Fetcher.fetch(url, fetch_options)
+    extractor     = Extractor.extract(fetcher.local_path, options)
+    extractor.final_path
+  end
+  
 end
 
 require 'downlow/fetcher'

@@ -5,11 +5,12 @@ class TestDownlowFetcher < Test::Unit::TestCase
   context "Downlow::Fetcher" do
     setup do
       FileUtils.rm_rf(tmp_dir) if File.readable?(tmp_dir)
+      @url = 'http://github.com/quirkey/sammy/'
+      FakeWeb.register_uri(:get, @url, :body => 'quirkey.com Sammy')
     end
     
     context ".fetch" do
       setup do
-        @url = 'http://github.com/quirkey/sammy/'
         @fetcher = Downlow::Fetcher.fetch(@url, {:tmp_dir => tmp_dir})
       end
       
