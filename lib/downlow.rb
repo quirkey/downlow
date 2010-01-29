@@ -25,6 +25,8 @@ module Downlow
   
 end
 
+def DL(*args) Downlow.get(*args); end
+
 require 'downlow/fetcher'
 require 'downlow/fetchers/git'
 require 'downlow/fetchers/http'
