@@ -3,7 +3,18 @@ require 'downlow/ext/pathname'
 module Downlow
   VERSION = '0.1.0'
   
-  def self.get(url, options = {})
+  def self.get(url, *args)
+    options = {}
+    first = args.shift
+    if first.is_a?(Hash)
+      # hash as argument means were setting the options
+      options = first
+    elsif first.to_s != ''
+      # string as argument means we're setting the destination
+      options[:destination] = first
+    end
+    # merge the rest as options
+    args.inject(options) {|o, arg| o = o.merge(arg) } if !args.empty?
     # fetch to a temp dir
     fetch_options = options.dup
     fetch_options.delete(:destination)
