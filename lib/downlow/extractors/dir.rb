@@ -1,16 +1,10 @@
-require 'zlib'
-
 module Downlow
   class Dir < Extractor
     
     handles(/.*$/)
     
     def extract
-      Zip::ZipFile.foreach(path) do |file|
-        path = destination + file.name
-        path.dirname.mkpath
-        file.extract(path)
-      end
+      path.cp destination
       @final_path = destination
     end
     

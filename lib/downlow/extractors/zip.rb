@@ -1,4 +1,4 @@
-require 'zlib'
+require 'zip/zip'
 
 module Downlow
   class Zip < Extractor
@@ -6,7 +6,7 @@ module Downlow
     handles(/\.zip$/)
     
     def extract
-      Zip::ZipFile.foreach(path) do |file|
+      ::Zip::ZipFile.foreach(path) do |file|
         path = destination + file.name
         path.dirname.mkpath
         file.extract(path)

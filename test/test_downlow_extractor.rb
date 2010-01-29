@@ -18,7 +18,7 @@ class TestDownlowExtractor < Test::Unit::TestCase
         assert @path.is_a?(Pathname)
         assert @path.directory?
         assert_match(/tmp/, @path.to_s)
-        assert File.readable?(@path + 'test.jpg')
+        assert File.readable?(@path + 'test/test.jpg')
       end
       
       should "return the correct fetcher" do
@@ -39,11 +39,11 @@ class TestDownlowExtractor < Test::Unit::TestCase
     context "initializing" do
       setup do
         @path = fixture_path('test.zip')
-        @extractor = Downlow::Zip.new(@url, {:tmp_dir => tmp_dir})
+        @extractor = Downlow::Zip.new(@path, {:tmp_dir => tmp_dir})
       end
       
       should "set the path" do
-        assert_equal @path, @extractor.path
+        assert_equal @path, @extractor.path.to_s
       end
       
       should "set the options" do
@@ -64,7 +64,7 @@ class TestDownlowExtractor < Test::Unit::TestCase
           assert @path.is_a?(Pathname)
           assert @path.directory?
           assert_match(/tmp/, @path.to_s)
-          assert (@path + 'test.jpg').readable?
+          assert (@path + 'test/test.jpg').readable?
         end
         
         should "set the local path" do
@@ -84,7 +84,7 @@ class TestDownlowExtractor < Test::Unit::TestCase
           assert @path.is_a?(Pathname)
           assert @path.directory?
           assert_match(/tmp/, @path.to_s)
-          assert (@path + 'test.jpg').readable?
+          assert (@path + 'test/test.jpg').readable?
         end
         
         should "set the final_path" do
@@ -102,7 +102,7 @@ class TestDownlowExtractor < Test::Unit::TestCase
           assert @path.is_a?(Pathname)
           assert @path.directory?
           assert_match(/tmp/, @path.to_s)
-          assert (@path + 'test.tar.gz').readable?
+          assert (@path + 'fixtures/test.tar.gz').readable?
         end
         
         should "set the final_path" do
