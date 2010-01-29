@@ -15,4 +15,12 @@ class Test::Unit::TestCase
     dir
   end
   
+  def fixture_path(path)
+    full_path = File.expand_path(File.join(File.dirname(__FILE__), 'fixtures', path))
+  end
+  
+  def fixture(path)
+    File.read(fixture_path(path))
+  end
+  
 end

@@ -4,7 +4,7 @@ module Downlow
     handles(/^git\:\/\//)
     
     def fetch
-      command = "`which git` clone #{url} #{destination}"
+      command = "`which git` clone #{url} #{destination.expand_path}"
       `#{command}`
       @local_path = destination
     end
