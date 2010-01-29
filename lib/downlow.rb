@@ -12,6 +12,5 @@ require 'downlow/fetchers/local'
 
 require 'downlow/extractor'
 require 'downlow/extractors/tar_gz'
-require 'downlow/extractors/gz'
 require 'downlow/extractors/zip'
 require 'downlow/extractors/dir'
