@@ -1,4 +1,4 @@
-require 'pathname'
+require 'download/ext/pathname'
 
 module Downlow
   VERSION = '0.1.0'
