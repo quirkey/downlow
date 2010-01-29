@@ -17,7 +17,7 @@ class TestDownlowFetcher < Test::Unit::TestCase
         @path = @fetcher.local_path
         assert @path.is_a?(Pathname)
         assert @path.file?
-        assert_match(/tmp/, @path)
+        assert_match(/tmp/, @path.to_s)
         assert_match(/quirkey/, @path.read)
       end
       
@@ -43,7 +43,7 @@ class TestDownlowFetcher < Test::Unit::TestCase
       end
       
       should "set the url" do
-        assert_equal @url, @fetcher.url
+        assert_equal @url, @fetcher.url.to_s
       end
       
       should "set the options" do
@@ -63,7 +63,7 @@ class TestDownlowFetcher < Test::Unit::TestCase
         should 'clone a git repo to the temp dir' do
           assert @path.is_a?(Pathname)
           assert @path.directory?
-          assert_match(/tmp/, @path)
+          assert_match(/tmp/, @path.to_s)
           assert (@path + 'lib/sammy.js').readable?
         end
         
@@ -82,7 +82,7 @@ class TestDownlowFetcher < Test::Unit::TestCase
         should 'download the file to the temp dir' do
           assert @path.is_a?(Pathname)
           assert @path.file?
-          assert_match(/tmp/, @path)
+          assert_match(/tmp/, @path.to_s)
           assert_match(/quirkey/, @path.read)
         end
         
@@ -93,14 +93,14 @@ class TestDownlowFetcher < Test::Unit::TestCase
       
       context "file" do
         setup do
-          @fetcher = Downlow::File.new(File.join(File.dirname(__FILE__), '..', 'lib'), :tmp_dir => tmp_dir)
+          @fetcher = Downlow::Local.new(File.join(File.dirname(__FILE__), '..', 'lib'), :tmp_dir => tmp_dir)
           @path = @fetcher.fetch
         end
         
         should "move directory into temp dir" do
           assert @path.is_a?(Pathname)
           assert @path.directory?
-          assert_match(/tmp/, @path)
+          assert_match(/tmp/, @path.to_s)
           assert (@path + 'downlow.rb').readable?
         end
         
