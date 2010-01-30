@@ -1,6 +1,30 @@
 = downlow
 
-Description goes here.
+Downloading files on the DL
+
+== Installation
+
+  gem install downlow
+
+== Usage
+
+Why is downloading and extracting files such a pain in Ruby?
+
+Downlow to the rescue.
+
+  $ irb -rubygems -rdownlow
+  >> DL('http://gist.github.com/gists/290151/download', '~/Desktop/gist')
+  => #<Pathname:/Users/aaronquint/Desktop/gist>
+  
+  >> DL('git://github.com/quirkey/resque-status.git', '~/Desktop')
+  => #<Pathname:/Users/aaronquint/Desktop/resque-status>
+  
+Sweet.
+
+== Thanks
+
+Thanks to @mxcl for the awesome pathname extensions in homebrew
+Thanks to @defunkt as took some ideas from rip
 
 == Note on Patches/Pull Requests
  
