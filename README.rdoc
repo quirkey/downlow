@@ -16,7 +16,17 @@ Downlow to the rescue.
   >> DL('http://gist.github.com/gists/290151/download', '~/Desktop/gist')
   => #<Pathname:/Users/aaronquint/Desktop/gist>
   
+  $ ls -l ~/Desktop/gist/
+  total 8
+  drwxrwxr-x  3 aaronquint  aaronquint  102 Jan 30 00:17 gist290151-4d195b0fc72a4b5e52f8e2b5d1670d078c03a018
+  
   >> DL('git://github.com/quirkey/resque-status.git', '~/Desktop')
+  Initialized empty Git repository in /Users/aaronquint/Sites/__active/downlow/tmp/resque-status/.git/
+  remote: Counting objects: 323, done.
+  remote: Compressing objects: 100% (186/186), done.
+  remote: Total 323 (delta 166), reused 169 (delta 83)
+  Receiving objects: 100% (323/323), 42.84 KiB, done.
+  Resolving deltas: 100% (166/166), done.
   => #<Pathname:/Users/aaronquint/Desktop/resque-status>
   
 Sweet.

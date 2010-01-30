@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Aaron Quint"]
-  s.date = %q{2010-01-29}
+  s.date = %q{2010-01-30}
   s.description = %q{Downlow provides an easy way to fetch files or archives and extract them with minimal hassle.}
   s.email = %q{aaron@quirkey.com}
   s.extra_rdoc_files = [
@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
      "LICENSE",
      "README.rdoc",
      "Rakefile",
+     "downlow.gemspec",
      "lib/downlow.rb",
      "lib/downlow/ext/pathname.rb",
      "lib/downlow/extractor.rb",
