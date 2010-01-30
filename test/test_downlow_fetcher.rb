@@ -57,7 +57,12 @@ class TestDownlowFetcher < Test::Unit::TestCase
       
       context "git" do
         setup do
-          @fetcher = Downlow::Git.new('git://github.com/quirkey/oneforty.git', :tmp_dir => tmp_dir)
+          class Downlow::Git
+            def git_clone 
+              FileUtils.cp_r(File.join(File.dirname(__FILE__), 'fixtures', 'sammy.git'), destination)
+            end
+          end
+          @fetcher = Downlow::Git.new('git://github.com/quirkey/sammy.git', :tmp_dir => tmp_dir)
           @path = @fetcher.fetch
         end
         

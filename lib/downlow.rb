@@ -20,7 +20,7 @@ module Downlow
     fetch_options.delete(:destination)
     fetcher       = Fetcher.fetch(url, fetch_options)
     extractor     = Extractor.extract(fetcher.local_path, options)
-    fetcher.local_path.rmdir # delete tmp path
+    FileUtils.rm_r(fetcher.local_path) # delete tmp path
     extractor.final_path
   end
   
