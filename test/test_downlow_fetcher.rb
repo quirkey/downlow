@@ -11,21 +11,16 @@ class TestDownlowFetcher < Test::Unit::TestCase
     
     context ".fetch" do
       setup do
-        @fetcher = Downlow::Fetcher.fetch(@url, {:tmp_dir => tmp_dir})
+        @path = Downlow::Fetcher.fetch(@url, {:tmp_dir => tmp_dir})
       end
       
       should "fetch the files" do
-        @path = @fetcher.local_path
         assert @path.is_a?(Pathname)
         assert @path.file?
         assert_match(/tmp/, @path.to_s)
         assert_match(/quirkey/, @path.read)
       end
-      
-      should "return the correct fetcher" do
-        assert @fetcher.is_a?(Downlow::Http)
-      end
-      
+            
     end
     
     context ".fetcher_for" do

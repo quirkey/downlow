@@ -18,10 +18,18 @@ module Downlow
     # fetch to a temp dir
     fetch_options = options.dup
     fetch_options.delete(:destination)
-    fetcher       = Fetcher.fetch(url, fetch_options)
-    extractor     = Extractor.extract(fetcher.local_path, options)
-    FileUtils.rm_r(fetcher.local_path) # delete tmp path
-    extractor.final_path
+    path = fetch(url, fetch_options)
+    final_path = extract(path, options)
+    FileUtils.rm_r(path) # delete tmp path
+    final_path
+  end
+  
+  def self.fetch(*args)
+    Downlow::Fetcher.fetch(*args)
+  end
+  
+  def self.extract(*args)
+    Downlow::Extractor.extract(*args)
   end
   
 end

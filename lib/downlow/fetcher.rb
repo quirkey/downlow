@@ -16,7 +16,7 @@ module Downlow
       klass = fetcher_for(url)
       fetcher = klass.new(url, options)
       fetcher.fetch
-      fetcher
+      fetcher.local_path
     end
     
     attr_reader :url, :options, :local_path

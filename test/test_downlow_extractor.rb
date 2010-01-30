@@ -10,21 +10,16 @@ class TestDownlowExtractor < Test::Unit::TestCase
     context ".extract" do
       setup do
         @path = fixture_path('test.zip')
-        @fetcher = Downlow::Extractor.extract(@path, {:destination => tmp_dir})
+        @final_path = Downlow::Extractor.extract(@path, {:destination => tmp_dir})
       end
       
       should "extract the files" do
-        @path = @fetcher.final_path
-        assert @path.is_a?(Pathname)
-        assert @path.directory?
-        assert_match(/tmp/, @path.to_s)
-        assert File.readable?(@path + 'test/test.jpg')
+        assert @final_path.is_a?(Pathname)
+        assert @final_path.directory?
+        assert_match(/tmp/, @final_path.to_s)
+        assert File.readable?(@final_path + 'test/test.jpg')
       end
-      
-      should "return the correct fetcher" do
-        assert @fetcher.is_a?(Downlow::Zip)
-      end
-      
+            
     end
     
     context ".extractor_for" do

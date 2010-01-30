@@ -16,7 +16,7 @@ module Downlow
       klass = extractor_for(url)
       extractor = klass.new(url, options)
       extractor.extract
-      extractor
+      extractor.final_path
     end
     
     attr_reader :path, :options, :final_path
