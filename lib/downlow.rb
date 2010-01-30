@@ -39,6 +39,7 @@ def DL(*args) Downlow.get(*args); end
 require 'downlow/fetcher'
 require 'downlow/fetchers/git'
 require 'downlow/fetchers/http'
+require 'downlow/fetchers/github'
 require 'downlow/fetchers/local'
 
 require 'downlow/extractor'

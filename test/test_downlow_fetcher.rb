@@ -102,6 +102,21 @@ class TestDownlowFetcher < Test::Unit::TestCase
         end
       end
       
+      context "github" do
+        
+        setup do
+          @url = 'gh://quirkey/sammy'
+          @real_url = "http://github.com/quirkey/sammy/tarball/master"
+          FakeWeb.register_uri(:get, @real_url, :response => fixture('gist_response'))
+          @fetcher = Downlow::Github.new(@url, :tmp_dir => tmp_dir)
+          @path = @fetcher.fetch
+        end
+        
+        should "reset the url to the tarball url" do
+          assert_equal @real_url, @fetcher.url
+        end        
+      end
+      
       context "file" do
         setup do
           @fetcher = Downlow::Local.new(File.join(File.dirname(__FILE__), '..', 'lib'), :tmp_dir => tmp_dir)
