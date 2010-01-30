@@ -27,8 +27,8 @@ module Downlow
       @options     = options
       @tmp_dir     = Pathname.new(options[:tmp_dir] || 'tmp').expand_path
       @tmp_dir.mkpath
-      @destination = Pathname.new(options[:destination] || tmp_dir + self.path.stem ).expand_path
-      @destination.dirname.mkpath
+      @destination = Pathname.new(options[:destination] || tmp_dir + self.path.stem).expand_path
+      @destination.mkpath
     end
     
     def extract
