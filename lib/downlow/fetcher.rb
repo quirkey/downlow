@@ -19,7 +19,8 @@ module Downlow
       fetcher
     end
     
-    attr_reader :url, :options, :local_path, :tmp_dir, :destination
+    attr_reader :url, :options, :local_path
+    attr_accessor :tmp_dir, :destination
     
     def initialize(url, options = {})
       @url     = Pathname.new(url)

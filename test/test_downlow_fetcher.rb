@@ -76,7 +76,7 @@ class TestDownlowFetcher < Test::Unit::TestCase
       
       context "http" do
         setup do
-          @fetcher = Downlow::Http.new('http://github.com/quirkey/sammy', :tmp_dir => tmp_dir)
+          @fetcher = Downlow::Http.new(@url, :tmp_dir => tmp_dir)
           @path = @fetcher.fetch
         end
         
@@ -89,6 +89,16 @@ class TestDownlowFetcher < Test::Unit::TestCase
         
         should "set the local path" do
           assert_equal @path, @fetcher.local_path
+        end
+        
+        should "respect content-disposition headers" do
+          gist_url = "http://gist.github.com/gists/290151/download"
+          FakeWeb.register_uri(:get, gist_url, :response => fixture('gist_response'))
+          @fetcher = Downlow::Http.new(gist_url, :tmp_dir => tmp_dir)
+          @path = @fetcher.fetch
+          assert @path.is_a?(Pathname)
+          assert @path.file?
+          assert_match(/\.tar\.gz$/, @path.to_s)
         end
       end
       

@@ -6,11 +6,17 @@ module Downlow
     handles(/^http\:\/\//)
     
     def fetch
-      f = File.open(destination, 'w')
-      open(url.to_s) do |u|      
-        f << u.read
+      data = ""
+      filename = destination.basename
+      open(url.to_s) do |u|
+        if disposition = u.meta['content-disposition'] and
+            disposition.match(/filename=\"([^\"]+)\"/)
+          filename = $1
+        end
+        data << u.read
       end
-      f.close
+      self.destination = destination.dirname + filename
+      File.open(destination, 'w') {|f| f << data }
       @local_path = destination
     end
     

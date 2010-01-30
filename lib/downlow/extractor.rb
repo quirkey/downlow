@@ -19,7 +19,8 @@ module Downlow
       extractor
     end
     
-    attr_reader :path, :options, :final_path, :tmp_dir, :destination
+    attr_reader :path, :options, :final_path
+    attr_accessor :tmp_dir, :destination
     
     def initialize(path, options = {})
       @path        = Pathname.new(path)
