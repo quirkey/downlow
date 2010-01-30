@@ -31,10 +31,15 @@ Downlow to the rescue.
   
 Sweet.
 
+BONUS BEATS FOR GITHUB
+Downloads the tarball and extracts.
+
+  >> DL('gh://quirkey/sammy', ~/Desktop')
+
 == Thanks
 
-Thanks to @mxcl for the awesome pathname extensions in homebrew
-Thanks to @defunkt as took some ideas from rip
+Thanks to @mxcl for the awesome pathname extensions in homebrew/
+Thanks to @defunkt as I took some ideas from rip.
 
 == Note on Patches/Pull Requests
  

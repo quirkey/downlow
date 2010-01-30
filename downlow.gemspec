@@ -31,6 +31,7 @@ Gem::Specification.new do |s|
      "lib/downlow/extractors/zip.rb",
      "lib/downlow/fetcher.rb",
      "lib/downlow/fetchers/git.rb",
+     "lib/downlow/fetchers/github.rb",
      "lib/downlow/fetchers/http.rb",
      "lib/downlow/fetchers/local.rb",
      "test/fixtures/gist_response",
