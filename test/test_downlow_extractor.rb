@@ -97,7 +97,27 @@ class TestDownlowExtractor < Test::Unit::TestCase
           assert @path.is_a?(Pathname)
           assert @path.directory?
           assert_match(/tmp/, @path.to_s)
-          assert (@path + 'test.tar.gz').readable?
+          assert (@path + 'fixtures/test.tar.gz').readable?
+        end
+        
+        should "set the final_path" do
+          assert_equal @path, @extractor.final_path
+        end
+      end
+      
+      context "single file" do
+        setup do
+          @destination = File.join(tmp_dir, "sammy.js")
+          @extractor = Downlow::Dir.new(fixture_path('sammy.git/lib/sammy.js'), :destination => @destination)
+          @path = @extractor.extract
+        end
+        
+        should 'extract to the exact destination' do
+          assert @path.is_a?(Pathname)
+          assert @path.file?
+          assert_match(/tmp/, @path.to_s)
+          assert @path.readable?
+          assert_equal @destination, @path.to_s
         end
         
         should "set the final_path" do

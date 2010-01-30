@@ -4,7 +4,12 @@ module Downlow
     handles(/.*$/)
     
     def extract
-      self.destination = destination + path.basename
+      if path.directory?
+        self.destination = destination + path.basename
+        destination.mkpath
+      else
+        destination.dirname.mkpath
+      end
       path.cp destination
       @final_path = destination
     end
