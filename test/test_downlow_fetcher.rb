@@ -100,6 +100,19 @@ class TestDownlowFetcher < Test::Unit::TestCase
           assert @path.file?
           assert_match(/\.tar\.gz$/, @path.to_s)
         end
+        
+        should "respect location headers" do
+          url = "http://github.com/quirkey/lighthouse_stats/tarball/master"
+          location_url = "http://github.com/quirkey-lighthouse_stats-e9012c9.tar.gz"
+          FakeWeb.register_uri(:get, url, :response => fixture('location_response'))
+          FakeWeb.register_uri(:get, location_url, :body => "BODY")
+          @fetcher = Downlow::Http.new(url, :tmp_dir => tmp_dir)
+          @path = @fetcher.fetch
+          assert @path.is_a?(Pathname)
+          assert @path.file?
+          assert_match(/\.tar\.gz$/, @path.to_s)
+        end
+        
       end
       
       context "github" do

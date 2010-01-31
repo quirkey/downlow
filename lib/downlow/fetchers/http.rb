@@ -12,6 +12,8 @@ module Downlow
         if disposition = u.meta['content-disposition'] and
             disposition.match(/filename=\"([^\"]+)\"/)
           filename = $1
+        else
+          filename = Pathname.new(u.base_uri.to_s).basename
         end
         data << u.read
       end
