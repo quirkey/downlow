@@ -16,7 +16,7 @@ begin
     gem.homepage = "http://github.com/quirkey/downlow"
     gem.authors = ["Aaron Quint"]
     
-    gem.add_dependency "rubyzip", ">=0.9.1"
+    gem.add_dependency "rubyzip", ">=0.9.4"
     gem.add_dependency "archive-tar-minitar", ">=0.5.2"
     
     gem.add_development_dependency "shoulda", ">= 0"

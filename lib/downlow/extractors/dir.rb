@@ -5,7 +5,9 @@ module Downlow
     
     def extract
       if path.directory?
-        self.destination = destination + path.basename
+        if destination.split.last != path.basename
+          self.destination = destination + path.basename
+        end
         destination.mkpath
       else
         destination.dirname.mkpath

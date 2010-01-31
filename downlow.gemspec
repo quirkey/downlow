@@ -35,6 +35,7 @@ Gem::Specification.new do |s|
      "lib/downlow/fetchers/http.rb",
      "lib/downlow/fetchers/local.rb",
      "test/fixtures/gist_response",
+     "test/fixtures/location_response",
      "test/fixtures/test.tar.gz",
      "test/fixtures/test.zip",
      "test/helper.rb",
@@ -59,18 +60,18 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<rubyzip>, [">= 0.9.1"])
+      s.add_runtime_dependency(%q<rubyzip>, [">= 0.9.4"])
       s.add_runtime_dependency(%q<archive-tar-minitar>, [">= 0.5.2"])
       s.add_development_dependency(%q<shoulda>, [">= 0"])
       s.add_development_dependency(%q<fakeweb>, [">= 1.2"])
     else
-      s.add_dependency(%q<rubyzip>, [">= 0.9.1"])
+      s.add_dependency(%q<rubyzip>, [">= 0.9.4"])
       s.add_dependency(%q<archive-tar-minitar>, [">= 0.5.2"])
       s.add_dependency(%q<shoulda>, [">= 0"])
       s.add_dependency(%q<fakeweb>, [">= 1.2"])
     end
   else
-    s.add_dependency(%q<rubyzip>, [">= 0.9.1"])
+    s.add_dependency(%q<rubyzip>, [">= 0.9.4"])
     s.add_dependency(%q<archive-tar-minitar>, [">= 0.5.2"])
     s.add_dependency(%q<shoulda>, [">= 0"])
     s.add_dependency(%q<fakeweb>, [">= 1.2"])
