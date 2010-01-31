@@ -97,7 +97,7 @@ class TestDownlowExtractor < Test::Unit::TestCase
           assert @path.is_a?(Pathname)
           assert @path.directory?
           assert_match(/tmp/, @path.to_s)
-          assert (@path + 'fixtures/test.tar.gz').readable?
+          assert (@path + 'test.tar.gz').readable?
         end
         
         should "set the final_path" do

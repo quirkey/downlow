@@ -141,6 +141,10 @@ class Pathname
     /((\d+\.)*\d+)$/.match stem
     return $1 if $1
 
+    # github short sha1s
+    /-([\d\w]{6,7})$/.match stem
+    return $1 if $1
+    
     # eg foobar-4.5.0-bin
     /-((\d+\.)+\d+[abc]?)[-.](bin|src|sources?)$/.match stem
     return $1 if $1
