@@ -111,10 +111,6 @@ class Pathname
     # we only support numbered tagged downloads
     %r[github.com/.*/tarball/((\d\.)+\d)$].match to_s
     return $1 if $1
-
-    # github short sha1s
-    /-([\d\w]{6,7})$/.match stem
-    return $1 if $1
     
     # eg. boost_1_39_0
     /((\d+_)+\d+)$/.match stem

@@ -5,6 +5,8 @@ Downloading files on the DL
 == Installation
 
   gem install downlow
+  
+Tested against Ruby 1.8.7 and 1.9.1
 
 == Usage
 
