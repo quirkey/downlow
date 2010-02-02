@@ -8,7 +8,7 @@ Downloading files on the DL
   
 Tested against Ruby 1.8.7 and 1.9.1
 
-== Usage
+== What
 
 Why is downloading and extracting files such a pain in Ruby?
 
@@ -37,6 +37,36 @@ BONUS BEATS FOR GITHUB
 Downloads the tarball and extracts.
 
   >> DL('gh://quirkey/sammy', ~/Desktop')
+  
+  
+== Usage
+
+Downlow is comprised of two main features: Fetchers and Extractors. 
+They do what they sound like they do.
+
+To just fetch a remote (or local file or directory)
+
+  Downlow::Fetcher.fetch('remote', :destination => 'local')
+  
+Fetcher currently handles these styles of URL
+
+  Git (git://)
+  HTTP (http://)
+  Github (gh://user/project)
+  Local (anything else)
+
+Extractors take a local file, and extract them based on their extension:
+
+  Downlow::Extractor.extract('local.archive', :destination => 'directory')
+  
+The extractors currently supported are
+
+  .tar.gz
+  .zip
+  dir (everything else)
+
+DL() is just an alias for Downlow.get() which is just a wrapper around 
+.fetch() and then .extract()
 
 == Thanks
 
