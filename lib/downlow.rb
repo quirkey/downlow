@@ -1,7 +1,7 @@
 require 'downlow/ext/pathname'
 
 module Downlow
-  VERSION = '0.1.0'
+  VERSION = '0.1.1'
   
   def self.get(url, *args)
     options = {}
