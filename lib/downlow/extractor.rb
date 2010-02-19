@@ -1,14 +1,18 @@
 module Downlow
   class Extractor
     
-    def self.handles(which)
+    def self.handles(which, options = {})
       @@handlers ||= []
-      @@handlers << [which, self]
+      @@handlers << [which, options, self]
     end
     
     def self.extractor_for(path)
-      @@handlers.each do |matcher, klass|
-        return klass if matcher.match path
+      @@handlers.each do |matcher, options, klass|
+        if options[:file_only] && !File.file?(path)
+          next
+        else
+          return klass if matcher.match(path)
+        end
       end
     end
     

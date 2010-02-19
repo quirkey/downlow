@@ -3,7 +3,7 @@ require 'zip/zip'
 module Downlow
   class Zip < Extractor
     
-    handles(/\.zip$/)
+    handles(/\.zip$/, :file_only => true)
     
     def extract
       ::Zip::ZipFile.foreach(path) do |file|

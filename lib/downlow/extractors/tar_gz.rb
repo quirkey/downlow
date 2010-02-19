@@ -4,7 +4,7 @@ require 'archive/tar/minitar'
 module Downlow
   class TarGz < Extractor
     
-    handles(/\.tar\.gz$/)
+    handles(/\.tar\.gz$/, :file_only => true)
     
     def extract
       destination.mkpath
