@@ -91,6 +91,16 @@ class TestDownlowFetcher < Test::Unit::TestCase
           assert_equal @path, @fetcher.local_path
         end
         
+        should "strip query-string when determining file name" do
+          gist_url = "http://github.com/malsup/form/raw/master/jquery.form.js?v2.38"
+          FakeWeb.register_uri(:get, gist_url, :body => "I'm just a normal file")
+          @fetcher = Downlow::Http.new(gist_url, :tmp_dir => tmp_dir)
+          @path = @fetcher.fetch
+          assert @path.is_a?(Pathname)
+          assert @path.file?
+          assert_match(/jquery.form.js$/, @path.to_s)
+        end
+        
         should "respect content-disposition headers" do
           gist_url = "http://gist.github.com/gists/290151/download"
           FakeWeb.register_uri(:get, gist_url, :response => fixture('gist_response'))

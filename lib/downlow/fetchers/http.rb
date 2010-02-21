@@ -17,6 +17,7 @@ module Downlow
         end
         data << u.read
       end
+      filename = filename.to_s.gsub(/\?(.*)$/,'')
       self.destination = destination.dirname + filename
       File.open(destination, 'w') {|f| f << data }
       @local_path = destination
