@@ -29,7 +29,7 @@ module Downlow
     def initialize(path, options = {})
       @path        = Pathname.new(path)
       @options     = options
-      @tmp_dir     = Pathname.new(options[:tmp_dir] || 'tmp').expand_path
+      @tmp_dir     = Pathname.new(options[:tmp_dir] || 'tmp').expand_path + 'extract'
       @tmp_dir.mkpath
       @destination = Pathname.new(options[:destination] || tmp_dir + self.path.stem).expand_path
     end
