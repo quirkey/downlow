@@ -3,7 +3,7 @@ require 'open-uri'
 module Downlow
   class Http < Fetcher
     
-    handles(/^http\:\/\//)
+    handles(/^https?\:\/\//)
     
     def fetch
       data = ""
