@@ -44,7 +44,7 @@ class Pathname
       return self+src.basename
     end
   end
-  
+
   # we assume this pathname object is a file obviously
   def write content
     raise "Will not overwrite #{to_s}" if exist? and not ARGV.force?
@@ -83,7 +83,7 @@ class Pathname
     raise unless e.errno == Errno::ENOTEMPTY::Errno or e.errno == Errno::EACCES::Errno
     false
   end
-  
+
   def chmod_R perms
     require 'fileutils'
     FileUtils.chmod_R perms, to_s
@@ -111,7 +111,7 @@ class Pathname
     # we only support numbered tagged downloads
     %r[github.com/.*/tarball/((\d\.)+\d)$].match to_s
     return $1 if $1
-    
+
     # eg. boost_1_39_0
     /((\d+_)+\d+)$/.match stem
     return $1.gsub('_', '.') if $1
@@ -120,7 +120,7 @@ class Pathname
     # eg. ruby-1.9.1-p243
     /-((\d+\.)*\d\.\d+-(p|rc)?\d+)$/.match stem
     return $1 if $1
-    
+
     # eg. lame-398-1
     /-((\d)+-\d)/.match stem
     return $1 if $1
@@ -140,7 +140,7 @@ class Pathname
     # eg. foobar4.5.1
     /((\d+\.)*\d+)$/.match stem
     return $1 if $1
-    
+
     # eg foobar-4.5.0-bin
     /-((\d+\.)+\d+[abc]?)[-.](bin|src|sources?)$/.match stem
     return $1 if $1

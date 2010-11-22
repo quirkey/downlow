@@ -2,7 +2,7 @@ require 'downlow/ext/pathname'
 
 module Downlow
   VERSION = '0.1.3'
-  
+
   def self.get(url, *args)
     options = {}
     first = args.shift
@@ -23,15 +23,15 @@ module Downlow
     FileUtils.rm_r(path) # delete tmp path
     final_path
   end
-  
+
   def self.fetch(*args)
     Downlow::Fetcher.fetch(*args)
   end
-  
+
   def self.extract(*args)
     Downlow::Extractor.extract(*args)
   end
-  
+
 end
 
 def DL(*args) Downlow.get(*args); end

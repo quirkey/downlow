@@ -1,8 +1,8 @@
 module Downlow
   class Dir < Extractor
-    
+
     handles(/.*$/)
-    
+
     def extract
       if path.directory?
         self.destination = destination + path.basename
@@ -13,6 +13,6 @@ module Downlow
       path.cp destination
       @final_path = destination
     end
-    
+
   end
 end

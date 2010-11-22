@@ -2,9 +2,9 @@ require 'open-uri'
 
 module Downlow
   class Http < Fetcher
-    
+
     handles(/^https?\:\/\//)
-    
+
     def fetch
       data = ""
       filename = destination.basename
@@ -22,6 +22,6 @@ module Downlow
       File.open(destination, 'w') {|f| f << data }
       @local_path = destination
     end
-    
+
   end
 end
